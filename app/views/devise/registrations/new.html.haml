@@ -3,27 +3,34 @@
   = devise_error_messages!
   .field
     = f.label :email
-    %br/
+    %em (This is private)
+    %br
     = f.email_field :email, autofocus: true
   .field
     = f.label :name
-    %br/
+    %em (This is public to the world!)
+    %br
     = f.text_field :name
   .field
+    = f.label :description
+    %em (Just a little bit about yourself!)
+    %br
+    = f.text_area :description, cols: 40, rows: 6
+  .field
     = f.label :contact_info
-    %br/
-    = f.text_area :contact_info
+    %em (How you want to be contacted. We recommend Skype!)
+    %br
+    = f.text_area :contact_info, cols: 40, rows: 6
   .field
     = f.label :password
     - if @minimum_password_length
-      %em
-        (#{@minimum_password_length} characters minimum)
-    %br/
+      %em (#{@minimum_password_length} characters minimum)
+    %br
     = f.password_field :password, autocomplete: "off"
   .field
     = f.label :password_confirmation
-    %br/
     = f.password_field :password_confirmation, autocomplete: "off"
+  = f.hidden_field :hours, value: 0
   .actions
     = f.submit "Sign up"
 = render "devise/shared/links"
