@@ -13,3 +13,17 @@
  *= require_tree .
  *= require_self
  */
+
+body {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  border-left: black 1px solid;
+  padding-left: 20px;
+}
+
+.root-link a {
+  text-decoration: none;
+  color: inherit;
+  background-color: inherit;
+}

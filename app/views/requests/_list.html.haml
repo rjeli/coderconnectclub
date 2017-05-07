@@ -1,0 +1,8 @@
+= list_of @requests do |r|
+  %b= r.title
+  = r.description
+  by
+  = r.user.email
+  (#{r.responses.count} interested)
+  - if user_signed_in?
+    = link_to 'Respond', new_response_path(request_id: r.id)
