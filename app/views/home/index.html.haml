@@ -26,6 +26,11 @@
     = link_to 'Login', new_user_session_path
     = link_to 'Register', new_user_registration_path
 
+%h3 Top tutors:
+= list_of User.order(hours: :desc).limit(10) do |u|
+  = link_to u.name, u
+  (#{u.hours} hours)
+
 %h3 Requests for tutoring:
 - if user_signed_in?
   = link_to 'New Request', new_request_path
