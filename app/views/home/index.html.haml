@@ -1,17 +1,37 @@
-%p
-  Welcome to CoderConnectClub!
-%p
-  We connect volunteer tutors to anybody learning to code
-  in order to make the amazing and useful skill of programming to anybody, regardless
-  of background.
-%p
-  Join now to find a tutor or offer your skills!
-
 - if user_signed_in?
   = link_to current_user.email, current_user
   = link_to 'Logout', destroy_user_session_path, method: :delete
-- else
-  = link_to 'Login', new_user_session_path
-  = link_to 'Register', new_user_registration_path
 
-= render 'requests/list'
+  %h3 Your requests:
+  = list_of current_user.requests do |req|
+    %b= req.title
+    = req.description
+    %ul
+      = list_of req.responses do |res|
+        %i
+          Response from #{link_to res.user.name, res.user}:
+          = res.description
+
+- else
+  %p
+    Welcome to CoderConnectClub!
+  %p
+    We connect volunteer tutors to anybody learning to code
+    in order to make the amazing and useful skill of programming to anybody, regardless
+    of background.
+  %p
+    Join now to find a tutor or offer your skills!
+    = link_to 'Login', new_user_session_path
+    = link_to 'Register', new_user_registration_path
+
+%h3 Requests for tutoring:
+- if user_signed_in?
+  = link_to 'New Request', new_request_path
+= list_of Request.all do |r|
+  %b= r.title
+  = r.description
+  by
+  = r.user.name
+  (#{r.responses.count} interested)
+  - if user_signed_in?
+    = link_to 'Respond', new_response_path(request_id: r.id)

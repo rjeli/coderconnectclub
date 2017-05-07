@@ -14,6 +14,7 @@ class ResponsesController < ApplicationController
 
   # GET /responses/new
   def new
+    @request = Request.find params[:request_id]
     @response = Response.new
   end
 
@@ -29,7 +30,7 @@ class ResponsesController < ApplicationController
 
     respond_to do |format|
       if @response.save
-        format.html { redirect_to @response, notice: 'Response was successfully created.' }
+        format.html { redirect_to root_path, notice: 'Response was successfully created.' }
         format.json { render :show, status: :created, location: @response }
       else
         format.html { render :new }

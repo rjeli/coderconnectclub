@@ -7,10 +7,10 @@
           %li= msg
 
   .field
-    = f.label :description
-    = f.text_area :description
+    %p Include a short message describing how you can help (optional, but recommended!):
+    = f.text_area :description, cols: 40, rows: 6
 
   = f.hidden_field :request_id, value: params[:request_id]
 
   .actions
-    = f.submit 'Save'
+    = f.submit 'Submit'
