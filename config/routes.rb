@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-  resources :responses
-  devise_for :users
+  devise_for :users, controllers: { registrations: 'registrations' }
   root 'home#index'
   resources :users, only: [:show]
   resources :requests
